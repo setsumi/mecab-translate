@@ -179,7 +179,7 @@ class Mecab(object):
             self.dictionary_format = Mecab.UNIDIC
         elif dic_f and dic_f != 'ipadic':
             print('unknown mecab_dictionary_format: {}'.format(dic_f))
-        args = ['mecab']
+        args = ['bin/mecab.exe']
         if Config.get('mecab_dictionary'):
             args += ['-d', Config.get('mecab_dictionary')]
         self.process = Popen(args, stdout=PIPE, stdin=PIPE, bufsize=1)
