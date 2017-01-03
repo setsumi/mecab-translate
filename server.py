@@ -47,6 +47,14 @@ KATAKANA_END = 0x30FA
 CJK_IDEO_START = 0x4e00
 CJK_IDEO_END = 0x9faf
 
+def is_kana(word):
+    for c in word:
+        o = ord(c)
+        if o > KATAKANA_END or o < HIRAGANA_START or HIRAGANA_END < o < KATAKANA_START:
+            return False
+    else:
+        return True
+
 def kata_to_hira(kata):
     hira = []
     for k in kata:
@@ -313,6 +321,8 @@ class JMdict_e(object):
         if regex:
             return self.dictionary.regex_search(word)
 
+        self._lemma_kana = is_kana(word)
+        self._sort_word = word
         self._sort_reading = reading
         self._sort_pos = set(pos) if pos else None
 
@@ -347,19 +357,21 @@ class JMdict_e(object):
         def matches(result, pos=0, word=0):
             if pos == 0 and raw.startswith(result):
                 return True
+            if word >= len(context['raw']):
+                return False
+            possible = []
             for c in context:
-                c_pos = pos
-                for i in range(word, len(context[c])):
-                    new_pos = c_pos + len(context[c][i])
-                    part = result[c_pos:new_pos]
-                    c_pos = new_pos
-                    if kata_to_hira(part) == kata_to_hira(context[c][i]):
-                        if c_pos == len(result):
-                            return True
-                        else:
-                            return matches(result, c_pos, i + 1)
+                context_word = context[c][word]
+                new_pos = pos + len(context_word)
+                part = result[pos:new_pos]
+                if kata_to_hira(part) == kata_to_hira(context_word):
+                    if new_pos == len(result):
+                        return True
                     else:
-                        break
+                        possible.append(lambda: matches(result, new_pos, word + 1))
+            for rec in possible:
+                if rec():
+                    return True
             else:
                 return False
 
@@ -401,7 +413,18 @@ class JMdict_e(object):
                 return 0
             return reading_match[1] or -1
 
-        return reading_sort(a, b) or pos_sort(a, b) or common_sort(a, b)
+        def lemma_sort(a, b):
+            if not self._lemma_kana:
+                return 0
+            kana_match = [False, False]
+            for i, e in enumerate([a, b]):
+                if len(e['words']) == 0:
+                    kana_match[i] = True
+            if kana_match[0] == kana_match[1]:
+                return 0
+            return kana_match[1] or -1
+
+        return reading_sort(a, b) or pos_sort(a, b) or lemma_sort(a, b) or common_sort(a, b)
 
 
     def _entry(self, entry):
@@ -560,6 +583,11 @@ class Kanjidic2(object):
         # stroke count, frequency
         misc = character.find('misc')
 
+        grade = misc.find('grade')
+        if grade is not None:
+            grade = int(grade.text)
+        entry['grade'] = grade
+
         stroke_count = misc.find('stroke_count')
         if stroke_count is not None:
             stroke_count = int(stroke_count.text)
@@ -569,6 +597,11 @@ class Kanjidic2(object):
         if freq is not None:
             freq = int(freq.text)
         entry['freq'] = freq
+
+        jlpt = misc.find('jlpt')
+        if jlpt is not None:
+            jlpt = int(jlpt.text)
+        entry['jlpt'] = jlpt
 
         reading_meaning = character.find('reading_meaning')
         if not reading_meaning:
