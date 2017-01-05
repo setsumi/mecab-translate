@@ -2,13 +2,13 @@
 
 Make sense of Japanese text with minimal effort and learn kanji in the process. Uses MeCab to break the input to words, allowing their dictionary form to be looked up from JMDict. Kanji information is provided by KANJIDIC2 and KanjiVG. Text-to-speech is also available.
 
-NOTE: This is third party bundle intended for use in Windows. Original program is [here](https://github.com/siikamiika/mecab-translate). 
+NOTE: This is a third party bundle intended for use on Windows. Original program is [here](https://github.com/siikamiika/mecab-translate). 
 
 ## Installation
 
 * Download this package (press `Clone or download` then `Download ZIP` buttons) and extract.
 * Go into `unidic-mecab` subfolder and extract `mecab-dic.rar` right there.
-* Install [Python 2](https://www.python.org/downloads/). Make sure to enable `Register Extensions` and `Add python.exe to Path` options during installation.
+* Install [Python](https://www.python.org/downloads/) 2 or 3. Make sure to enable `Register Extensions` and `Add python.exe to Path` options during installation.
 * Open system command prompt (cmd.exe) and run the command:
 
     `pip install --upgrade pypiwin32 tornado pyperclip`
@@ -18,7 +18,7 @@ NOTE: This is third party bundle intended for use in Windows. Original program i
 ## Running
 
 * Run `server.py` and wait untill it says "server listening to :9874".
-* If clipboard tracking is needed, run `copy_clipboard_python2.py`
+* If clipboard tracking is needed, run `clipboard_server.py`
 * Open web browser at address `http://localhost:9874/`
 * Use cog-wheel icon at the top left to access the settings menu.
 * Type `localhost:9873` in the "WebSocket input" field. Message "Connected" shoud be displayed in green.
