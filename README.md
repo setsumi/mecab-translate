@@ -1,6 +1,7 @@
 # mecab-translate
 
 Japanese text reading assistant featuring jpn-eng translations, text-to-speech, and detailed kanji information.
+
 Make sense of Japanese text with minimal effort and learn kanji in the process. Uses MeCab to break the input to words, allowing their dictionary form to be looked up from JMDict. Kanji information is provided by KANJIDIC2 and KanjiVG. Text-to-speech is also available.
 
 NOTE: This is a third party bundle intended for use on Windows. Original program is [here](https://github.com/siikamiika/mecab-translate). 
