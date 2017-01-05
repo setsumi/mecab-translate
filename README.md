@@ -9,8 +9,7 @@ NOTE: This is a bundle intended for use in Windows. Original program is [here](h
 * Download this package (press `Clone or download` then `Download ZIP` buttons) and extract.
 * Go into `unidic-mecab` subfolder and extract `mecab-dic.rar` right there.
 * Install [Python 2](https://www.python.org/downloads/). Make sure to enable `Register Extensions` and `Add python.exe to Path` options during installation.
-* Open system command prompt (cmd.exe) and run the command:
-    pip install --upgrade pypiwin32 tornado pyperclip
+* Open system command prompt (cmd.exe) and run the command: `pip install --upgrade pypiwin32 tornado pyperclip`
 * Go into the mecab-translate folder and run `download_dependencies.py`
 * Done.
 
