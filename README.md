@@ -31,7 +31,6 @@ Any text copied to the clipboard should appear in the textarea at http://localho
 If the clipboard changes, the new text will replace the old one. However, the history can be 
 navigated with the buttons below the textarea or with the hotkeys Alt+1 (back) and Alt+2 (forward).
 The input can be edited, for example when you want to partition the text to understand it better.
-copy_clipboard_pythonX.py tries to add newlines after logical pauses such as 。　and 、 though.
 
 ### TTS
 
