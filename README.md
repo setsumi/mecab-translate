@@ -74,7 +74,7 @@ Selecting text can also be used with mecab output information field to translate
 Sometimes it's better to leave the tail of the word out when selecting text. If exact results are 
 not found (or even when they are), the results starting with the query will be available at the 
 bottom of the translations from a button that reads 
-"More words starting with [the query] (number of results)".
+"More words starting with [the query] \(number of results)".
 
 ### Kanji information
 
