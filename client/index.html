@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html ng-app="mecab-translate">
 <head>
     <meta charset="utf-8">
@@ -316,6 +316,9 @@
     </div>
     <!-- Translation -->
     <div ng-controller="Translation">
+        <div ng-if="query && query.split(',').length===1">
+            {{query}} <a target="_blank" href="http://www.google.com/search?q={{query}}+とは&ie=utf-8&oe=utf-8">[G]</a><a target="_blank" href="http://www.google.com/search?q={{query}}&ie=utf-8&oe=utf-8&tbm=isch">[GI]</a>
+        </div>
         <div ng-if="shorterEntries" class="warning">
             No exact matches! Did you mean...
         </div>
@@ -331,7 +334,8 @@
                             class="unobtrusive"
                         >(<span ng-repeat="inf in word.inf"><span class="abbr" ng-attr-title="{{inf[1]}}">{{inf[0]}}</span><span ng-if="!$last">, </span></span>)</span><span
                             ng-if="!$last"
-                        >, </span>
+                        ></span>
+                        <a style="font-size: 16px" target="_blank" href="http://www.google.com/search?q={{word.text}}+とは&ie=utf-8&oe=utf-8">[G]</a><a style="font-size: 16px" target="_blank" href="http://www.google.com/search?q={{word.text}}&ie=utf-8&oe=utf-8&tbm=isch">[GI]</a>
                     </span>
                 </div>
                 <div ng-style="{'font-size': entry.words.length ? '20px' : '28px'}">
@@ -350,6 +354,7 @@
                         >({{reading.restr.join(', ')}})</span><span
                             ng-if="!$last"
                         >, </span>
+                        <span ng-if="!entry.words.length"><a style="font-size: 16px" target="_blank" href="http://www.google.com/search?q={{reading.text}}+とは&ie=utf-8&oe=utf-8">[G]</a><a style="font-size: 16px" target="_blank" href="http://www.google.com/search?q={{reading.text}}&ie=utf-8&oe=utf-8&tbm=isch">[GI]</a></span>
                     </span>
                 </div>
                 <ol>
