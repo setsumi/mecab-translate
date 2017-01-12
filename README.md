@@ -9,7 +9,6 @@ NOTE: This is a third party bundle intended for use on Windows. Original program
 ## Installation
 
 * Download this package (press `Clone or download` then `Download ZIP` buttons) and extract.
-* Go into `unidic-mecab` subfolder and extract `mecab-dic.rar` right there.
 * Install [Python](https://www.python.org/downloads/) 2 or 3. Make sure to enable `Register Extensions` and `Add python.exe to Path` options during installation.
 * Open system command prompt (cmd.exe) and run the command:
 

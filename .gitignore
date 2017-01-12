@@ -5,5 +5,3 @@ client/vendor/
 data/*
 !data/kanji.tgz_similars.ut8
 client/kanji/
-unidic-mecab/*
-!unidic-mecab/mecab-dic.rar

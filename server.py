@@ -179,7 +179,7 @@ class Mecab(object):
 
     def __init__(self):
         self.dictionary_format = Mecab.UNIDIC
-        args = ['mecab', '-d', 'data/unidic-mecab-translate']
+        args = ['bin/mecab.exe', '-d', 'data/unidic-mecab-translate']
         self.process = Popen(args, stdout=PIPE, stdin=PIPE, bufsize=1)
         self.output = Queue()
         self.t = Thread(target=self._handle_stdout)
