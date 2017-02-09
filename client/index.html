@@ -221,6 +221,23 @@
              --></div>
             </div>
         </div>
+        <div ng-if="nbest">
+            <button ng-click="toggleNbest()">Other ways to parse 「{{lastSelection}}」({{nbest.length}})</button>
+            <button ng-click="clearNbest()">Reset</button>
+        </div>
+        <ol ng-if="showNbest" id="nbest">
+            <li ng-click="setLines([result]); resumeNonClickMode()" class="clickable" ng-repeat="result in nbest"><!--
+             --><table
+                    cellspacing="0"
+                    class="nbest-table"
+                    ng-repeat="word in result">
+                    <tr><td>{{short([word.pos, word.pos2, word.pos3, word.pos4], 4, '/')}}&nbsp;</td></tr>
+                    <tr><td>{{short([word.inflection_type, word.inflection_form], 4, '/')}}&nbsp;</td></tr>
+                    <tr><td class="nbest-reading">{{nbestReading(word)}}&nbsp;</td></tr>
+                    <tr class="nbest-word"><td><span ng-class="posClass(word.pos)">{{word.literal}}</span></td></tr>
+                </table><!--
+         --></li>
+        </ol>
         <div style="font-size: 10px;" class="unobtrusive" ng-class="{'hide': !nonclick}">Non-click mode activated.</div>
         <div ng-show="showMecabInfo" ng-if="word.pos" class="mecab-info">
             <b>Pos: </b>{{mecabInfoTranslation('pos', word)}}

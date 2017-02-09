@@ -118,6 +118,33 @@ angular.module('mecab-translate')
         isKanji: function(char) {
             return typeof char == 'string' && char.length == 1 && isKanji(char);
         },
+        isKana: function(text) {
+            for (var i = 0; i < text.length; i++) {
+                if (!isHira(text[i]) && !isKata(text[i])) {
+                    return false;
+                }
+            }
+            return true;
+        },
+        short: function(input, maxlen, separator) {
+            var output = [];
+
+            for (var i = 0; i < input.length; i++) {
+                if (input[i]) {
+                    output.push(abbrWord(input[i]));
+                }
+            }
+
+            function abbrWord (text) {
+                text = text.split('|')[0];
+                if (text.length > maxlen) {
+                    return text.slice(0, maxlen) + '.';
+                } else {
+                    return text;
+                }
+            }
+            return output.join(separator);
+        },
         removeChouon: removeChouon,
         isPunctuation : function(char) {
             return char !== '' && '.。．‥…,،，、;；:：!！?？\'´‘’"”“-－―～~[]「」『』【】〈〉《》〔〕()（）{}｛｝'.indexOf(char) != -1;

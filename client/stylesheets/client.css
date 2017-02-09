@@ -173,6 +173,20 @@ ul {
 
 }
 
+.nbest-table {
+    display: inline-table;
+    font-size: 10px;
+    text-align: center;
+}
+
+.nbest-word {
+    font-size: 20px;
+}
+
+.nbest-reading {
+    font-size: 14px;
+}
+
 .line {
     width: 90%;
     display: inline-block;
